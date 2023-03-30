@@ -1,5 +1,17 @@
 package com.HR.board.dao;
 
-public class IBoardDAO {
+import java.util.ArrayList;
+
+import com.HR.board.dto.BoardDTO;
+
+public interface IBoardDAO {
+	
+	ArrayList<BoardDTO> select();
+	BoardDTO selectById(int id);
+	
+	int insert(String title,String content, String nickName);
+	int update();
+	int delete();
+	
 
 }

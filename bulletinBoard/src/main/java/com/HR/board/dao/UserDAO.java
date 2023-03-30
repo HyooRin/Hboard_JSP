@@ -36,10 +36,11 @@ public class UserDAO implements IUserDAO{
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int id = rs.getInt("id");
-				String userName = rs.getString("userName");
 				String email = rs.getString("email");	
-				UserDTO dto = new UserDTO(id, userName, email);
-				list.add(dto);						
+				//String 
+				//String userName = rs.getString("userName");
+				//UserDTO dto = new UserDTO(id, userName, email);
+				//list.add(dto);						
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
