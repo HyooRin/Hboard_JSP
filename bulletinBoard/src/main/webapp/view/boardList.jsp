@@ -34,7 +34,8 @@
 	   <c:forEach var="board" items="${list}">
 		<tr>
 			<td>${board.id}</td>
-			<td><a href="/bulletinBoard/boardDetail?borderId=${board.id}">${board.title}</a></td>			
+			<!-- boardId 전송 -->
+			<td><a href="/bulletinBoard/boardDetail?action=select&boardId=${board.id}">${board.title}</a></td>			
 			<td>${board.nickName}</td>
 			<td>${board.date}</td>
 		</tr>

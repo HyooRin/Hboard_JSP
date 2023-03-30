@@ -10,7 +10,8 @@ public interface IBoardDAO {
 	BoardDTO selectById(int id);
 	
 	int insert(String title,String content, String nickName);
-	int update();
+	
+	int update(String title,String content, String nickName, int id);
 	int delete();
 	
 
