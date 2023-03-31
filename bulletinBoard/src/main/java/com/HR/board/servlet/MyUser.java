@@ -1,6 +1,7 @@
 package com.HR.board.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -27,15 +28,36 @@ public class MyUser extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		// select 기능 
-		ArrayList<UserDTO> userList = dao.select();
-		request.setAttribute("list", userList);
-		RequestDispatcher dispatcher = request.getRequestDispatcher(".jsp");
-		dispatcher.forward(request, response);
+//		ArrayList<UserDTO> userList = dao.select();
+//		request.setAttribute("list", userList);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher(".jsp");
+//		dispatcher.forward(request, response);
 		
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		int responseCount = 0;
+		
+		UserDAO userDAO = new UserDAO();		
+		
+		String userId = request.getParameter("userId");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String nickName = request.getParameter("nickName");
+ 		
+		// insert
+		responseCount = userDAO.insert(userId, email, password, nickName);
+		
+		
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/plain");
+		PrintWriter out = response.getWriter();
+		out.print(responseCount);
+		
 		
 	}
 

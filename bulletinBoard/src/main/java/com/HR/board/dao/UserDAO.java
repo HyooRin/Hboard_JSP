@@ -37,7 +37,6 @@ public class UserDAO implements IUserDAO{
 			while(rs.next()) {
 				int id = rs.getInt("id");
 				String email = rs.getString("email");	
-				//String 
 				//String userName = rs.getString("userName");
 				//UserDTO dto = new UserDTO(id, userName, email);
 				//list.add(dto);						
@@ -58,14 +57,33 @@ public class UserDAO implements IUserDAO{
 	}
 
 	@Override
-	public int insert(String userName, String email) {
+	public int insert(String userId, String email, String password, String nickName) {
 		
 		int resultCount = 0;
 		
-		String queryStr = "  ";
+		String queryStr = " INSERT INTO user(userId, email, password, nickName) "
+				+ " VALUES( ? , ? , ? , ? ) ";
 		
+		PreparedStatement pstmt = null;
 		
-		return 0;
+		try {
+			pstmt = conn.prepareStatement(queryStr);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, email );
+			pstmt.setString(3, password );
+			pstmt.setString(4, nickName);
+			resultCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		return resultCount;
 	}
 
 	@Override

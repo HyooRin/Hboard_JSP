@@ -10,26 +10,30 @@
 	<h1>Can you join us?</h1>
 	<form action="/bulletinBoard/user?action=insert" method="post">
 
-		<label for="email">
+		<label for="userId">
 		 이메일 : 
-		 <input type="text" name="emailId" id="emailId" required="required">
-		  <span>@</span>
-		 <select>
+		 <input type="text" name="userId" id="userId" required="required">
+		 </label>		 
+		
+		 <span>@</span>
+		 
+		 <select name="email" >
 				<option>naver.com</option>
 				<option>gmail.com</option>
 				<option>daum.net</option>
 				<option>nate.com</option>
 				<option>hanmail.com</option>
 		</select>
-		</label> 
+	
+		
 		<label for="password"> 
 		비밀번호 : 
 		<input type="password" name="password" id=password required="required">
 		</label>
 		 
-		<label for="name"> 
+		<label for="nickName"> 
 		닉네임 : 
-		<input type="text" name="nickName" id="name" required="required">
+		<input type="text" name="nickName" id="nickName" required="required">
 		</label> 
 		<input type="submit" value="Join">
 
