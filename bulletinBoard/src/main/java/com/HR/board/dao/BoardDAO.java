@@ -89,6 +89,8 @@ public class BoardDAO implements IBoardDAO {
 			}
 		}
 
+		System.out.println(dto.getContent());
+		System.out.println(dto.getTitle());
 		return dto;
 	}
 
@@ -97,7 +99,7 @@ public class BoardDAO implements IBoardDAO {
 
 		int resultCountRow = 0;
 
-		String queryStr = " INSERT INTO board(title, content, nickName) " + "VALUES( ? , ? , ? ); ";
+		String queryStr = " INSERT INTO board(title, content, nickName) " + "VALUES( ? , ? , ? ) ";
 
 		PreparedStatement pstmt = null;
 
@@ -125,7 +127,7 @@ public class BoardDAO implements IBoardDAO {
 
 		int resultCountRow = 0;
 
-		String queryStr = " UPDATE board " + " SET title = ? , content = ? , nickName = ? " + "WHERE id = ? ";
+		String queryStr = " UPDATE board " + " SET title = ? , content = ? , nickName = ? " + " WHERE id = ? ";
 
 		PreparedStatement pstmt = null;
 
@@ -136,6 +138,8 @@ public class BoardDAO implements IBoardDAO {
 			pstmt.setString(3, nickName);
 			pstmt.setInt(4, id);
 			resultCountRow = pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

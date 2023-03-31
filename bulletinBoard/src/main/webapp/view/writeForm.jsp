@@ -9,7 +9,6 @@
 <body>
 	<h1>글쓰자</h1>
 	<form action="/bulletinBoard/board?action=insert" method="post">
-
 		<label for="title">
 		 제목 :  
 		<input type="text" name="title" id="title" required="required">
@@ -26,7 +25,7 @@
 		<input type="submit" value="SAVE">
 
 	</form>
-	
+
  
 
 </body>
