@@ -17,8 +17,8 @@
 		<input type="text" name="title" id="title" value="${board.title}">
 		</label> 
 		<a>작성자 :
-		<input type="text" name="nickName" value="${board.nickName}">
-		 ${board.nickName}
+		<input type="hidden" name="userId" value="${board.userId}">
+		 ${board.userId}
 		</a>
 		<label for="content">
 		 내용 :

@@ -37,9 +37,9 @@ public class BoardDAO implements IBoardDAO {
 				int id = rs.getInt("id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				String nickName = rs.getString("nickName");
 				String date = rs.getString("date");
-				BoardDTO dto = new BoardDTO(id, title, content, nickName, date);
+				int userId = rs.getInt("userId");
+				BoardDTO dto = new BoardDTO(id, title, content, date, userId);
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -59,7 +59,7 @@ public class BoardDAO implements IBoardDAO {
 	@Override
 	public BoardDTO selectById(int id) {
 
-		String queryStr = " SELECT title, content, nickName, date " + " FROM board " + " WHERE id = ? ";
+		String queryStr = " SELECT title, content, date, userId " + " FROM board " + " WHERE id = ? ";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -74,8 +74,8 @@ public class BoardDAO implements IBoardDAO {
 				dto = new BoardDTO();
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
-				dto.setNickName(rs.getString("nickName"));
 				dto.setDate(rs.getString("date"));
+				dto.setUserId(rs.getInt("userId"));
 
 			}
 		} catch (SQLException e) {
@@ -95,11 +95,11 @@ public class BoardDAO implements IBoardDAO {
 	}
 
 	@Override
-	public int insert(String title, String content, String nickName) {
+	public int insert(String title,String content, int userId) {
 
 		int resultCountRow = 0;
 
-		String queryStr = " INSERT INTO board(title, content, nickName) " + "VALUES( ? , ? , ? ) ";
+		String queryStr = " INSERT INTO board(title, content, userId) " + "VALUES( ? , ? , ? ) ";
 
 		PreparedStatement pstmt = null;
 
@@ -107,7 +107,7 @@ public class BoardDAO implements IBoardDAO {
 			pstmt = conn.prepareStatement(queryStr);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setString(3, nickName);
+			pstmt.setInt(3, userId);
 			resultCountRow = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,11 +123,11 @@ public class BoardDAO implements IBoardDAO {
 	}
 
 	@Override
-	public int update(String title, String content, String nickName, int id) {
+	public int update(String title,String content, int userId, int id) {
 
 		int resultCountRow = 0;
 
-		String queryStr = " UPDATE board " + " SET title = ? , content = ? , nickName = ? " + " WHERE id = ? ";
+		String queryStr = " UPDATE board  SET title = ? , content = ? , userId = ?  WHERE id = ? ";
 
 		PreparedStatement pstmt = null;
 
@@ -135,7 +135,7 @@ public class BoardDAO implements IBoardDAO {
 			pstmt = conn.prepareStatement(queryStr);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setString(3, nickName);
+			pstmt.setInt(3, userId);
 			pstmt.setInt(4, id);
 			resultCountRow = pstmt.executeUpdate();
 			

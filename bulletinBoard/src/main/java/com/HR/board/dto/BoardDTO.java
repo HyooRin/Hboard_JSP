@@ -5,19 +5,19 @@ public class BoardDTO {
 	int id;
 	String title;
 	String content;
-	String nickName;
 	String date;
+	int userId;
 	
 	public BoardDTO() {
 	}
 	
-	public BoardDTO(int id, String title, String content, String nickName, String date) {
+	public BoardDTO(int id, String title, String content, String date, int userId) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.nickName = nickName;
 		this.date = date;
+		this.userId = userId;
 	}
 	
 	public int getId() {
@@ -38,17 +38,17 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
 	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	

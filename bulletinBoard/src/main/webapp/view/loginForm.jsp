@@ -8,12 +8,24 @@
 </head>
 <body>
 	<h1>Can you join us?</h1>
-	<form action="/bulletinBoard/user?action=insert" method="post">
+	<form action="/bulletinBoard/user?action=login" method="Get">
 
-		<label for="email">
-		 ID : 
-		<input type="text" name="emailId" id="emailId" required="required">
+		<label for="userName">
+		 Email : 
+		<input type="text" name="userName" id="userName" required="required">
 		</label> 
+
+		 <span>@</span>
+		 
+		 <select name="email" >
+				<option>naver.com</option>
+				<option>gmail.com</option>
+				<option>daum.net</option>
+				<option>nate.com</option>
+				<option>hanmail.com</option>
+		 </select>		
+		
+		
 		<label for="password">
 		 비밀번호 : <input type="password" name="password" id=password required="required">
 		</label> 

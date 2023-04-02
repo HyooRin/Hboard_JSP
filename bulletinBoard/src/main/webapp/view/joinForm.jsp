@@ -10,9 +10,9 @@
 	<h1>Can you join us?</h1>
 	<form action="/bulletinBoard/user?action=insert" method="post">
 
-		<label for="userId">
+		<label for="userName">
 		 이메일 : 
-		 <input type="text" name="userId" id="userId" required="required">
+		 <input type="text" name="userName" id="userName" required="required">
 		 </label>		 
 		
 		 <span>@</span>
@@ -23,7 +23,7 @@
 				<option>daum.net</option>
 				<option>nate.com</option>
 				<option>hanmail.com</option>
-		</select>
+		 </select>
 	
 		
 		<label for="password"> 

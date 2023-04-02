@@ -27,10 +27,12 @@ public class MyBoard extends HttpServlet {
 
 		BoardDAO dao = new BoardDAO();
 		request.setCharacterEncoding("UTF-8");
+		String action = request.getParameter("action");
 		ArrayList<BoardDTO> resultList = dao.select();
 		request.setAttribute("list", resultList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("view/boardList.jsp");
 		dispatcher.forward(request, response);
+		
 
 	}
 
@@ -47,16 +49,16 @@ public class MyBoard extends HttpServlet {
 		BoardDAO boardDAO = new BoardDAO();
 		String id = request.getParameter("id");
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String nickName = request.getParameter("nickName");
+		String content = request.getParameter("content");		
+		String userId = request.getParameter("userId");
 
 		if (action.equals("insert")) {
 
-			responseCount = boardDAO.insert(title, content, nickName);
+			responseCount = boardDAO.insert(title, content, Integer.parseInt(userId));
 
 			// update.jsp -> 여기로 와서 -> update 성공
 		} else if (action.equals("update")) {
-			responseCount = boardDAO.update(title, content, nickName, Integer.parseInt(id));
+			responseCount = boardDAO.update(title, content, Integer.parseInt(userId), Integer.parseInt(id));
 		}
 
 		response.setCharacterEncoding("UTF-8");

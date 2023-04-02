@@ -12,7 +12,7 @@
  <ul>
  <li>${board.title}</li>
  <li>${board.content}</li>
- <li>${board.nickName}</li>
+ <li>${board.userId}</li>
  <li>${board.date}</li>
  </ul>
  

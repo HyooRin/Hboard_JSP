@@ -17,9 +17,9 @@
 		 내용 :
 		 <input type="text" name="content" id="content" required="required">
 		</label> 
-		<label for="nickName">
-		 닉네임 :
-		 <input type="text" name="nickName" id="nickName" required="required">
+		<label for=userId>
+		 닉네임(userId) :
+		 <input type="number" name="userId" id="userId" required="required">
 		</label> 
 	
 		<input type="submit" value="SAVE">

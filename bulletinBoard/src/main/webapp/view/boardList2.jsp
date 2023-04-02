@@ -43,10 +43,9 @@
 
 	</table>
 	
-	<!-- button><a href="/bulletinBoard/view/writeForm.jsp">글쓰기</a></button> -->
-	<button><a href="/bulletinBoard/view/loginForm.jsp">너도쓸래?</a></button>
-	
-
+	<button><a href="/bulletinBoard/view/writeForm.jsp">글쓰기</a></button>
+	<button><a href="/bulletinBoard/view/writeForm.jsp">MyBlog</a></button>
+	<button><a href="/bulletinBoard/user?action=select">Myuser</a></button>
 	
 	<div class ="footer">
 	 <ul class="pagination">
