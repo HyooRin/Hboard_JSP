@@ -15,7 +15,6 @@
  <li>${user.password}</li>
  <li>${user.nickName}</li>
  </ul>
- 
  <!--<button><a href="/bulletinBoard/boardDetail?action=update&boardId=${boardId}">글 수정하기</a></button>-->
 
 </body>

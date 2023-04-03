@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.HR.board.dao.UserDAO;
 import com.HR.board.dto.UserDTO;
@@ -26,25 +27,23 @@ public class MyUser extends HttpServlet {
 			throws ServletException, IOException {
 
 		UserDAO dao = new UserDAO();
-		String action = request.getParameter("action");
-		String userName = request.getParameter("userName");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+//		String action = request.getParameter("action");
+//		String userName = request.getParameter("userName");
+//		String email = request.getParameter("email");
+//		String password = request.getParameter("password");
+		
+		HttpSession session = request.getSession();
+		String userName = (String)session.getAttribute("userName");
+		String email = (String)session.getAttribute("email");
+		String password = (String)session.getAttribute("password");
 
-		// select 기능 (마이페이지)
-//		if (action.equals("select")) {
-//			ArrayList<UserDTO> userList = dao.select();
-//			request.setAttribute("list", userList);
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("userDetail.jsp");
-//			dispatcher.forward(request, response);
-//		} else if (action.equals("login")) {
+		
+		// select 기능 (마이유저)		
 			UserDTO dto = dao.selectByIdAndPassword(userName, email, password);
-			System.out.println(dto.toString());
 			request.setAttribute("user", dto);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/board");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("view/userDetail.jsp");
 			dispatcher.forward(request, response);
-			// response.sendRedirect("/board");
-		//}
+		 
 
 	}
 
@@ -66,14 +65,16 @@ public class MyUser extends HttpServlet {
 		if (action.equals("insert")) {
 			// insert (join)
 			responseCount = userDAO.insert(userName, email, password, nickName);
+			
+		} else if (action.equals("login")) {
+			UserDTO dto = userDAO.selectByIdAndPassword(userName, email, password);
+			System.out.println(dto.toString());
+
+			request.setAttribute("user", dto);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/board");
+			dispatcher.forward(request, response);
+
 		}
-//		else if(action.equals("login")){		
-//		UserDTO dto = userDAO.selectByIdAndPassword(userName, email, password);
-//		System.out.println(dto.toString());
-//		request.setAttribute("user", dto);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/board");
-//		dispatcher.forward(request, response);
-//		}
 
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/plain");

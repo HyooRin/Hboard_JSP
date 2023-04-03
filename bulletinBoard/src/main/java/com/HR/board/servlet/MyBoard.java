@@ -10,9 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.HR.board.dao.BoardDAO;
+import com.HR.board.dao.UserDAO;
 import com.HR.board.dto.BoardDTO;
+import com.HR.board.dto.UserDTO;
 
 @WebServlet("/board")
 public class MyBoard extends HttpServlet {
@@ -25,14 +28,20 @@ public class MyBoard extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		BoardDAO dao = new BoardDAO();
+		BoardDAO boardDAO = new BoardDAO();
+		UserDAO userDAO = new UserDAO();
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
-		ArrayList<BoardDTO> resultList = dao.select();
+		
+
+			
+		
+		ArrayList<BoardDTO> resultList = boardDAO.select();
 		request.setAttribute("list", resultList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("view/boardList.jsp");
 		dispatcher.forward(request, response);
 		
+
 
 	}
 

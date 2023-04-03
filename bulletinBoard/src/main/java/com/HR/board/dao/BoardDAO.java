@@ -93,6 +93,53 @@ public class BoardDAO implements IBoardDAO {
 		System.out.println(dto.getTitle());
 		return dto;
 	}
+	
+	
+	@Override
+	public ArrayList<BoardDTO> selectByUserId(int userId) {
+		
+		ArrayList<BoardDTO> list = new ArrayList<>();
+		
+		String queryStr = " SELECT * "
+				+ " FROM board "
+				+ " WHERE userId = ? ";
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			pstmt = conn.prepareStatement(queryStr);
+			pstmt.setInt(1, userId);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String date = rs.getString("date");
+				userId = rs.getInt("userId");
+				
+				BoardDTO dto = new BoardDTO(id, title, content, date, userId);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+
+	}
+	
+	
+	
 
 	@Override
 	public int insert(String title,String content, int userId) {
@@ -161,5 +208,7 @@ public class BoardDAO implements IBoardDAO {
 		return 0;
 
 	}
+
+
 
 }

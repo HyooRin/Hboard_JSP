@@ -43,8 +43,12 @@
 
 	</table>
 	
-	<!-- button><a href="/bulletinBoard/view/writeForm.jsp">글쓰기</a></button> -->
-	<button><a href="/bulletinBoard/view/loginForm.jsp">너도쓸래?</a></button>
+	 <button><a href="/bulletinBoard/view/writeForm.jsp">글쓸래</a></button> 
+	 <button><a href="/bulletinBoard/blog">MyBlog</a></button> 
+	 <button><a href="/bulletinBoard/user">MyUser</a></button> 
+	 
+	 <button><a href="/bulletinBoard/view/loginForm.jsp">로그인</a></button>
+	 
 	
 
 	

@@ -8,6 +8,7 @@ public interface IBoardDAO {
 	
 	ArrayList<BoardDTO> select();
 	BoardDTO selectById(int id);
+	ArrayList<BoardDTO> selectByUserId(int userId);
 	
 	int insert(String title,String content, int userId);	
 	int update(String title,String content, int userId, int id);
