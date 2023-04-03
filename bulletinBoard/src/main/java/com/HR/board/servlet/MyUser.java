@@ -27,10 +27,6 @@ public class MyUser extends HttpServlet {
 			throws ServletException, IOException {
 
 		UserDAO dao = new UserDAO();
-//		String action = request.getParameter("action");
-//		String userName = request.getParameter("userName");
-//		String email = request.getParameter("email");
-//		String password = request.getParameter("password");
 		
 		HttpSession session = request.getSession();
 		String userName = (String)session.getAttribute("userName");

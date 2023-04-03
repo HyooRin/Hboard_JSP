@@ -44,6 +44,7 @@ public class MyBlog extends HttpServlet {
 		System.out.println(list);
 		
 		request.setAttribute("board" , list);
+		request.setAttribute("user" , user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("view/blog.jsp");
 		dispatcher.forward(request, response);
 		

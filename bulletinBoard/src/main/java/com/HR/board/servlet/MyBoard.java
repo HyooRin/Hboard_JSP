@@ -32,11 +32,11 @@ public class MyBoard extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
-		
-
 			
 		
 		ArrayList<BoardDTO> resultList = boardDAO.select();
+		
+		
 		request.setAttribute("list", resultList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("view/boardList.jsp");
 		dispatcher.forward(request, response);
