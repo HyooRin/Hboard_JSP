@@ -28,7 +28,8 @@ public class BoardDAO implements IBoardDAO {
 		String queryStr = " select b.*, nickName "
 				+ " from board as b "
 				+ " inner join user as u "
-				+ " on b.userId = u.id ";
+				+ " on b.userId = u.id "
+				+ " order by b.id DESC ";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -51,9 +52,6 @@ public class BoardDAO implements IBoardDAO {
 				BoardDTO dto = new BoardDTO(id, title, content, date, userId);
 				dto.setUser(user);
 				list.add(dto);
-				
-				
-								
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -201,7 +199,7 @@ public class BoardDAO implements IBoardDAO {
 
 		int resultCountRow = 0;
 
-		String queryStr = " INSERT INTO board(title, content, userId) " + "VALUES( ? , ? , ? ) ";
+		String queryStr = " INSERT INTO board(title, content, userId) " + " VALUES( ? , ? , ? ) ";
 
 		PreparedStatement pstmt = null;
 
@@ -221,6 +219,7 @@ public class BoardDAO implements IBoardDAO {
 			}
 		}
 
+		System.out.println("result :  " + resultCountRow);
 		return resultCountRow;
 	}
 

@@ -19,6 +19,8 @@ if (userName != null && email != null && password != null) {
 		session.setAttribute("userName", userName);
 		session.setAttribute("email", email);
 		session.setAttribute("password", password);
+		session.setAttribute("nickName", user.getNickName());
+		session.setAttribute("userId", user.getId());
 		response.sendRedirect("/bulletinBoard/board");
 
 	} else {

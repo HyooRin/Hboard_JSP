@@ -61,6 +61,7 @@ public class MyUser extends HttpServlet {
 		if (action.equals("insert")) {
 			// insert (join)
 			responseCount = userDAO.insert(userName, email, password, nickName);
+			response.sendRedirect("/bulletinBoard/board");
 			
 		} else if (action.equals("login")) {
 			UserDTO dto = userDAO.selectByIdAndPassword(userName, email, password);
