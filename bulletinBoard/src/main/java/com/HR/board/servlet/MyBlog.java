@@ -31,11 +31,11 @@ public class MyBlog extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();		
+		
 		String userName = (String)session.getAttribute("userName");
 		String email = (String)session.getAttribute("email");
-		String password = (String)session.getAttribute("password");
-		
+		String password = (String)session.getAttribute("password");	
 
 		
 		UserDTO user = userDAO.selectByIdAndPassword(userName, email, password);

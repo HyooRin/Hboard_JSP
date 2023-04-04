@@ -28,14 +28,17 @@ public class BoardDetail extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		String boardId = request.getParameter("boardId");
+		String nickName = request.getParameter("nickName");
 		System.out.println("boardId : " + boardId);
 
 		// 글 상세조회
 		BoardDAO dao = new BoardDAO();
 		if (action.equals("select")) {
 			BoardDTO dto = dao.selectById(Integer.parseInt(boardId));
+			
 			request.setAttribute("boardId", boardId);
 			request.setAttribute("board", dto);
+			request.setAttribute("nickName", nickName);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("view/detailForm.jsp");
 			dispatcher.forward(request, response);
 
@@ -46,6 +49,7 @@ public class BoardDetail extends HttpServlet {
 			BoardDTO dto = dao.selectById(Integer.parseInt(boardId));
 			request.setAttribute("board", dto);
 			request.setAttribute("boardId", boardId);
+			request.setAttribute("nickName", nickName);
 			dispatcher.forward(request, response);
 
 		}

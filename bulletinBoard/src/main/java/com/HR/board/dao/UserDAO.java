@@ -96,6 +96,8 @@ public class UserDAO implements IUserDAO {
 		return user;
 
 	}
+	
+	
 
 	@Override
 	public int insert(String userName, String email, String password, String nickName) {

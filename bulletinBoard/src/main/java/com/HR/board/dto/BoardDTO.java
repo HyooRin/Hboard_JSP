@@ -7,7 +7,7 @@ public class BoardDTO {
 	String content;
 	String date;
 	int userId;
-	
+	UserDTO user;
 	public BoardDTO() {
 	}
 	
@@ -49,6 +49,14 @@ public class BoardDTO {
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 	
 	

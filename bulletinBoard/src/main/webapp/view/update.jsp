@@ -18,7 +18,7 @@
 		</label> 
 		<a>작성자 :
 		<input type="hidden" name="userId" value="${board.userId}">
-		 ${board.userId}
+		 ${nickName}
 		</a>
 		<label for="content">
 		 내용 :

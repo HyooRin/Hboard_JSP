@@ -1,3 +1,4 @@
+<%@page import="com.HR.board.dao.UserDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -5,12 +6,15 @@
  <%
 
 	// 로그인 세션
-	String userName = (String)session.getAttribute("userName");
+		String userName = (String)session.getAttribute("userName");
+ 		
+ 		 
+ 
  	
 	if(userName == null){
 		response.sendRedirect("loginForm.jsp");
 	}
-	
+ 		
 %>   
 
 <!DOCTYPE html>
@@ -96,6 +100,13 @@ button {
 	display: flex;
 }
 
+button,input,optgroup,select,textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit
+}
+
 
 
 </style>
@@ -109,7 +120,7 @@ button {
 		<input type="text" name="title"	id="title" required="required"> 
 		</label>
 		
-		<label for=userId> 닉네임(userId) : <input type="number" name="userId" id="userId" required="required"></label>
+		<label for=userId> 닉네임(userId) : <input type="number" name="userId" id="userId" value="" ></label>
 		
 		<!-- <label for="content"> 내용 : 
 		<input type="text" name="content" id="content" required="required">

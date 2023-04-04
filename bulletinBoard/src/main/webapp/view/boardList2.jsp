@@ -4,17 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          >
-<title>게시판</title>
-<!-- <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css"> --> 
-<style type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Blog Home - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        
 
 
 
-</style>
+
+
 </head>
 <body>
     <div class="page-container">
@@ -22,7 +25,16 @@
 	</div>
 
 	<!-- http://localhost:8080/bulletinBoard/boardDetail -->
-    <div>
+    <div class ="btn-list">
+    
+    <ul>
+	 <li><button><a href="/bulletinBoard/view/writeForm.jsp" >글쓰자</a></button></li>
+	 <li><button><a href="/bulletinBoard/blog">MyBlog</a></button></li>
+	 <li><button><a href="/bulletinBoard/user">MyUser</a></button></li>
+     <li><button><a href="/bulletinBoard/view/loginForm.jsp">로그인</a></button></li>	 
+	 </ul>
+	 </div>
+	 
 	<table class="table">
 		<tr>
 			<th>NO</th>
@@ -41,11 +53,12 @@
 		</tr>
 		</c:forEach>
 
+	   
 	</table>
 	
-	<button><a href="/bulletinBoard/view/writeForm.jsp">글쓰기</a></button>
-	<button><a href="/bulletinBoard/view/writeForm.jsp">MyBlog</a></button>
-	<button><a href="/bulletinBoard/user?action=select">Myuser</a></button>
+
+	
+
 	
 	<div class ="footer">
 	 <ul class="pagination">
@@ -57,7 +70,7 @@
 	</div>
     
     
-    </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    
+
 </body>
 </html>

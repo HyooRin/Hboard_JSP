@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.HR.board.dto.BoardDTO;
+import com.HR.board.dto.UserDTO;
 import com.HR.board.utils.DBHelper;
 
 public class BoardDAO implements IBoardDAO {
@@ -24,7 +25,10 @@ public class BoardDAO implements IBoardDAO {
 
 		ArrayList<BoardDTO> list = new ArrayList<>();
 
-		String queryStr = " SELECT * FROM board ";
+		String queryStr = " select b.*, nickName "
+				+ " from board as b "
+				+ " inner join user as u "
+				+ " on b.userId = u.id ";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -39,8 +43,17 @@ public class BoardDAO implements IBoardDAO {
 				String content = rs.getString("content");
 				String date = rs.getString("date");
 				int userId = rs.getInt("userId");
+				String nickName = rs.getString("nickName");
+				
+				UserDTO user = new UserDTO();
+				user.setNickName(nickName);
+				
 				BoardDTO dto = new BoardDTO(id, title, content, date, userId);
+				dto.setUser(user);
 				list.add(dto);
+				
+				
+								
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,16 +106,13 @@ public class BoardDAO implements IBoardDAO {
 		System.out.println(dto.getTitle());
 		return dto;
 	}
-	
-	
+
 	@Override
 	public ArrayList<BoardDTO> selectByUserId(int userId) {
-		
+
 		ArrayList<BoardDTO> list = new ArrayList<>();
-		
-		String queryStr = " SELECT * "
-				+ " FROM board "
-				+ " WHERE userId = ? ";
+
+		String queryStr = " SELECT * " + " FROM board " + " WHERE userId = ? ";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -119,7 +129,7 @@ public class BoardDAO implements IBoardDAO {
 				String content = rs.getString("content");
 				String date = rs.getString("date");
 				userId = rs.getInt("userId");
-				
+
 				BoardDTO dto = new BoardDTO(id, title, content, date, userId);
 				list.add(dto);
 			}
@@ -137,12 +147,57 @@ public class BoardDAO implements IBoardDAO {
 		return list;
 
 	}
-	
-	
-	
 
 	@Override
-	public int insert(String title,String content, int userId) {
+	public ArrayList<BoardDTO> selectNickname(int userId) {
+
+		ArrayList<BoardDTO> list = new ArrayList<>();
+
+		String queryStr = " select b.*, nickName "
+				+ " from board as b "
+				+ " inner join user as u "
+				+ " on b.userId = u.id " 
+				+ " where b.userId = ? ";
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			pstmt = conn.prepareStatement(queryStr);
+			pstmt.setInt(1, userId);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String date = rs.getString("date");
+				userId = rs.getInt("userId");
+				String nickName = rs.getString("nickName");
+								
+				UserDTO user = new UserDTO();
+				user.setNickName(nickName);
+				BoardDTO dto = new BoardDTO(id, title, content, date, userId);
+				dto.setUser(user);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
+	@Override
+	public int insert(String title, String content, int userId) {
 
 		int resultCountRow = 0;
 
@@ -158,7 +213,7 @@ public class BoardDAO implements IBoardDAO {
 			resultCountRow = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
@@ -170,7 +225,7 @@ public class BoardDAO implements IBoardDAO {
 	}
 
 	@Override
-	public int update(String title,String content, int userId, int id) {
+	public int update(String title, String content, int userId, int id) {
 
 		int resultCountRow = 0;
 
@@ -185,17 +240,16 @@ public class BoardDAO implements IBoardDAO {
 			pstmt.setInt(3, userId);
 			pstmt.setInt(4, id);
 			resultCountRow = pstmt.executeUpdate();
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 
 		return resultCountRow;
@@ -208,7 +262,5 @@ public class BoardDAO implements IBoardDAO {
 		return 0;
 
 	}
-
-
 
 }

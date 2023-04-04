@@ -10,6 +10,8 @@ public interface IUserDAO {
 	UserDTO selectByIdAndPassword(String userName, String email, String password);
 	
 	
+	
+	
 	int insert(String userName, String email, String password, String nickName);
 	
 	int update(UserDTO user);
