@@ -34,7 +34,7 @@
 				<!-- boardId 전송 -->
 				<td><a
 					href="/bulletinBoard/boardDetail?action=select&boardId=${board.id}">${board.title}</a></td>
-				<td>${board.userId}</td>
+				<td>${user.nickName}</td>
 				<td>${board.date}</td>
 			</tr>
 		</c:forEach>

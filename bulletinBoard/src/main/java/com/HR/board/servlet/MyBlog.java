@@ -40,7 +40,7 @@ public class MyBlog extends HttpServlet {
 		
 		UserDTO user = userDAO.selectByIdAndPassword(userName, email, password);
 		System.out.println(user.getId());
-		ArrayList<BoardDTO> list = boardDAO.selectByUserId(user.getId());    
+		ArrayList<BoardDTO> list = boardDAO.selectNickname(user.getId());    
 		System.out.println(list);
 		
 		request.setAttribute("board" , list);

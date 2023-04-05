@@ -6,13 +6,16 @@
 
 <%
 // 로그인 세션
-String userName = (String) session.getAttribute("userName");
-String nickName = (String) session.getAttribute("nickName");
-int userId = (int) session.getAttribute("userId");
-
-if (userName == null) {
+String nickName = null;
+String userId = null;
+if (session.getAttribute("userName") == null) {
 	response.sendRedirect("loginForm.jsp");
+} else{
+	nickName = (String) session.getAttribute("nickName");
+	userId = String.valueOf(session.getAttribute("userId"));
 }
+
+
 %>
 
 <!DOCTYPE html>
@@ -88,29 +91,40 @@ button {
 	display: flex;
 }
 
-button, input, optgroup, select, textarea {
+button, input, optgroup, select {
 	margin: 0;
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit
+}
+
+#content{
+	
+	width: 200px;
+	height: 300px;
+
 }
 </style>
 
 
 </head>
 <body>
+
 	<h1>글쓰자</h1>
+
+
+
 	<form action="/bulletinBoard/board?action=insert" method="post">
-		<label for="title"> 제목 : <input type="text" name="title"
+		<label for="title">  <input type="text" name="title"
 			id="title" required="required">
-		</label> <label for=userId> 닉네임 : <%=nickName%>
+		</label>
+
+
+		<label for=userId> 닉네임 : <%=nickName%>
 		</label> <input type="hidden" name="userId" id="userId" value="<%=userId%>">
-
-
-		<label for="content"> 내용 : 
-		<input type="text" name="content" id="content" required="required">
-		<br>
-		<input type="submit" value="SAVE">
+		<label for="content"> 
+		<input type="text" name="content" id="content" required="required"> <br> 
+			<input type="submit" value="SAVE">
 	</form>
 
 
