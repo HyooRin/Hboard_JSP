@@ -14,8 +14,6 @@ if (session.getAttribute("userName") == null) {
 	nickName = (String) session.getAttribute("nickName");
 	userId = String.valueOf(session.getAttribute("userId"));
 }
-
-
 %>
 
 <!DOCTYPE html>
@@ -39,13 +37,13 @@ form {
 }
 
 /*속성 선택자 - 태그[속성="값"]*/
-input[type="text"], input[type="submit"], select {
+input[type="text"], input[type="submit"] {
 	padding: 8px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
 }
 
-input[type="password"] {
+#title {
 	padding: 10px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
@@ -114,17 +112,27 @@ button, input, optgroup, select {
 
 
 
+	<!-- <form action="/bulletinBoard/board?action=insert" method="post" enctype="multipart/form-data"> -->
 	<form action="/bulletinBoard/board?action=insert" method="post">
-		<label for="title">  <input type="text" name="title"
-			id="title" required="required">
+		<label for="title">
+		<input type="text" name="title" id="title" required="required">
 		</label>
 
-
 		<label for=userId> 닉네임 : <%=nickName%>
-		</label> <input type="hidden" name="userId" id="userId" value="<%=userId%>">
+		</label>
+		
+		<input type="hidden" name="userId" id="userId" value="<%=userId%>">
+		
 		<label for="content"> 
-		<input type="text" name="content" id="content" required="required"> <br> 
-			<input type="submit" value="SAVE">
+		<input type="text" name="content" id="content" required="required">
+		</label>
+		
+		<!--<label for="file"> 파일업로드 :</label>
+		<input type="file" name="file" id="file" >  -->
+		
+		
+		<br>
+		<input type="submit" value="SAVE">
 	</form>
 
 
